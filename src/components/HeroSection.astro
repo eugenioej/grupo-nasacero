@@ -44,40 +44,27 @@ const h = copy.hero;
       </div>
 
       <!-- Headline -->
-      <h1 class="text-white font-black uppercase leading-[1.05] mb-6"
-          style="font-size: clamp(2.4rem, 2rem + 3.5vw, 4.5rem); letter-spacing: 0.04em;">
+      <h1 class="text-white font-black uppercase leading-[1.05] mb-5 md:mb-6"
+          style="font-size: clamp(1.75rem, 1.3rem + 4.5vw, 4.5rem); letter-spacing: 0.04em;">
         {h.headline}
       </h1>
 
       <!-- Sub -->
-      <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-normal" style="text-transform: none; letter-spacing: normal;">
+      <p class="text-white/70 text-base md:text-xl leading-relaxed mb-8 md:mb-10 max-w-2xl font-normal" style="text-transform: none; letter-spacing: normal;">
         {h.sub}
       </p>
 
       <!-- CTAs -->
-      <div class="flex flex-wrap gap-4">
-        <a href={h.cta1Href} class="btn-primary">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <a href={h.cta1Href} class="btn-primary justify-center sm:justify-start">
           {h.cta1}
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href={h.cta2Href} class="btn-ghost-white">
+        <a href={h.cta2Href} class="btn-ghost-white justify-center sm:justify-start">
           {h.cta2}
         </a>
       </div>
 
-      <!-- Trust badges -->
-      <div class="flex flex-wrap gap-6 mt-12 pt-10 border-t border-white/10">
-        {[
-          { label: '+30 años', sub: 'de experiencia' },
-          { label: '3 empresas', sub: 'especializadas' },
-          { label: 'Nacional', sub: 'cobertura total' },
-        ].map((badge) => (
-          <div class="flex flex-col">
-            <span class="text-white font-black text-xl uppercase tracking-wider">{badge.label}</span>
-            <span class="text-white/45 text-xs uppercase tracking-[0.15em] font-medium mt-0.5">{badge.sub}</span>
-          </div>
-        ))}
-      </div>
     </div>
   </div>
 

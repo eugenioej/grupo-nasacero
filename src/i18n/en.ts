@@ -52,7 +52,7 @@ export const en: Copy = {
   stats: {
     eyebrow: 'The group in numbers',
     items: [
-      { value: '30+', label: 'Years of experience' },
+      { value: '+30', label: 'Years of experience' },
       { value: '3', label: 'Specialized companies' },
       { value: '100%', label: 'National coverage' },
       { value: '+20K', label: 'Tons installed' },

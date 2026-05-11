@@ -13,7 +13,6 @@ const nav = copy.nav;
 const links = [
   { href: lang === 'es' ? '/' : '/en/', label: nav.home, page: 'home' },
   { href: lang === 'es' ? '/nosotros/' : '/en/about/', label: nav.about, page: 'about' },
-  { href: lang === 'es' ? '/contacto/' : '/en/contact/', label: nav.contact, page: 'contact' },
 ];
 ---
 
@@ -105,21 +104,28 @@ const links = [
     role="navigation"
     aria-label="Menú móvil"
   >
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+    <div class="px-4 py-3 flex flex-col">
       {links.map((link) => (
         <a
           href={link.href}
-          class={`px-4 py-3 rounded-lg text-sm font-semibold uppercase tracking-[0.06em] transition-colors ${
-            activePage === link.page ? 'text-coral bg-coral/8' : 'text-navy hover:bg-navy/6'
+          class={`flex items-center w-full px-3 py-4 rounded-xl text-base font-bold uppercase tracking-[0.06em] transition-colors ${
+            activePage === link.page
+              ? 'text-coral'
+              : 'text-navy hover:text-coral hover:bg-coral/4'
           }`}
         >
+          {activePage === link.page && (
+            <span class="inline-block w-1 h-4 rounded-full bg-coral mr-3 flex-shrink-0" aria-hidden="true"></span>
+          )}
           {link.label}
         </a>
       ))}
-      <div class="h-px bg-navy/10 my-2"></div>
-      <a href={lang === 'es' ? '/contacto/' : '/en/contact/'} class="btn-primary mt-1 justify-center uppercase tracking-[0.06em]">
-        {nav.contact}
-      </a>
+      <div class="pt-2 pb-1">
+        <a href={lang === 'es' ? '/contacto/' : '/en/contact/'} class="btn-primary w-full justify-center">
+          {nav.contact}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </header>

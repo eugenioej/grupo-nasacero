@@ -98,6 +98,18 @@ const a = copy.about;
           <p class="text-white/60 text-base md:text-lg leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">
             {a.team.body}
           </p>
+          <div class="flex justify-center gap-8 sm:gap-12 mt-10 sm:mt-14">
+            {[
+              { v: '+70', l: 'Employees' },
+              { v: '+30', l: 'Years' },
+              { v: '3', l: 'Companies' },
+            ].map(stat => (
+              <div class="text-center">
+                <div class="text-white font-black uppercase" style="font-size: clamp(1.8rem, 1.4rem + 2vw, 2.5rem); letter-spacing:0.05em;">{stat.v}</div>
+                <div class="text-white/40 text-xs uppercase tracking-[0.18em] font-semibold mt-1">{stat.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
