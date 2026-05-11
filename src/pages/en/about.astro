@@ -1,0 +1,126 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { en } from '@/i18n/en';
+
+const copy = en;
+const a = copy.about;
+---
+
+<BaseLayout copy={copy} lang="en" page="about" canonical="https://gruponasacero.com/en/about/">
+  <Header copy={copy} lang="en" activePage="about" />
+
+  <main id="main-content">
+
+    <!-- Hero -->
+    <section class="bg-navy-deep py-24 md:py-32 relative overflow-hidden" aria-labelledby="about-hero-en-title">
+      <div class="absolute inset-0" aria-hidden="true">
+        <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <span class="eyebrow text-coral/80 mb-4 block">{a.hero.eyebrow}</span>
+        <h1 id="about-hero-en-title" class="text-white font-black uppercase mb-6"
+            style="font-size: clamp(2rem, 1.5rem + 3vw, 3.8rem); letter-spacing:0.05em; line-height:1.1;">
+          {a.hero.title}
+        </h1>
+        <p class="text-white/65 text-lg md:text-xl leading-relaxed max-w-2xl"
+           style="text-transform:none;letter-spacing:normal;font-weight:400;">
+          {a.hero.sub}
+        </p>
+      </div>
+    </section>
+
+    <!-- Story -->
+    <section class="section-pad bg-crema" aria-labelledby="story-en-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div class="gn-fade">
+            <span class="eyebrow mb-3 block">{a.story.eyebrow}</span>
+            <h2 id="story-en-title" class="text-navy mb-6">{a.story.title}</h2>
+            <div class="flex flex-col gap-5">
+              <p class="text-muted leading-relaxed text-base" style="text-transform:none;letter-spacing:normal;font-weight:400;">{a.story.p1}</p>
+              <p class="text-muted leading-relaxed text-base" style="text-transform:none;letter-spacing:normal;font-weight:400;">{a.story.p2}</p>
+              <p class="text-muted leading-relaxed text-base" style="text-transform:none;letter-spacing:normal;font-weight:400;">{a.story.p3}</p>
+            </div>
+          </div>
+          <div class="gn-fade" style="transition-delay:120ms">
+            <div class="flex flex-col gap-0 relative">
+              <div class="absolute left-5 top-6 bottom-6 w-px bg-navy/20" aria-hidden="true"></div>
+              {[
+                { year: '1994', title: 'Founded', body: 'Nacional de Anclas begins operations in Monterrey, N.L., serving regional demand for foundation anchors.' },
+                { year: '2000s', title: 'Expansion', body: 'Nasacero is founded, expanding the group portfolio to specialized steel plate cutting.' },
+                { year: '2010s', title: 'Structure', body: 'JP Rentals completes the value chain, offering design, fabrication and assembly of structural steel.' },
+                { year: 'Today', title: 'Consolidated group', body: '30+ years, 3 companies, 70+ employees and presence throughout Mexico.' },
+              ].map((item, i) => (
+                <div class="relative flex gap-8 pb-10 gn-fade" style={`transition-delay:${(i+1)*100}ms`}>
+                  <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-black text-xs z-10"
+                       style={`background: ${i === 0 ? '#c8433a' : i === 3 ? '#e8b33e' : '#1a2640'}; color: white;`}>
+                    {item.year.length <= 4 && item.year !== 'Today' ? item.year : ''}
+                  </div>
+                  <div class="pt-1">
+                    <h3 class="text-navy font-black text-sm uppercase tracking-[0.08em] mb-1">{item.title}</h3>
+                    <p class="text-muted text-sm leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">{item.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="section-pad bg-white" aria-labelledby="values-en-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-xl mx-auto mb-14 gn-fade">
+          <span class="eyebrow mb-3 block">{a.values.eyebrow}</span>
+          <h2 id="values-en-title" class="text-navy">{a.values.title}</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {a.values.items.map((item, i) => (
+            <div class="p-8 rounded-2xl bg-crema border border-navy/8 gn-fade" style={`transition-delay:${i*90}ms`}>
+              <h3 class="text-navy font-black text-base uppercase tracking-[0.06em] mb-3">{item.title}</h3>
+              <p class="text-muted text-sm leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section class="section-pad" style="background: linear-gradient(135deg, #1a2640, #0f172a);" aria-labelledby="team-en-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-2xl mx-auto gn-fade">
+          <span class="eyebrow mb-4 block">{a.team.eyebrow}</span>
+          <h2 id="team-en-title" class="text-white mb-6">{a.team.title}</h2>
+          <p class="text-white/60 text-base md:text-lg leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">
+            {a.team.body}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Companies recap -->
+    <section class="section-pad bg-crema" aria-labelledby="group-recap-en-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center gn-fade">
+        <span class="eyebrow mb-3 block">{copy.companies.eyebrow}</span>
+        <h2 id="group-recap-en-title" class="text-navy mb-4">{copy.companies.title}</h2>
+        <div class="flex flex-wrap justify-center gap-4 mt-10">
+          {copy.companies.items.map(c => (
+            <a href={c.url} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-xl border border-navy/10 hover:border-coral/30 hover:shadow-card-hover transition-all duration-200 group">
+              <span class="font-bold text-navy text-sm uppercase tracking-[0.06em] group-hover:text-coral transition-colors">{c.name}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-navy/30 group-hover:text-coral/60 transition-colors" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer copy={copy} lang="en" />
+  <WhatsAppFloat lang="en" />
+</BaseLayout>

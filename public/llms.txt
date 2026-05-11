@@ -1,0 +1,200 @@
+# Grupo Nasacero — llms.txt
+# https://llmstxt.org
+# Última actualización: 2025
+
+> Grupo Nasacero es un grupo industrial mexicano fundado en 1994 en Monterrey, Nuevo León.
+> Especializado en acero y construcción industrial, opera tres empresas especializadas con
+> cobertura en toda la República Mexicana.
+
+---
+
+## Identidad del grupo
+
+**Nombre legal:** Grupo Nasacero
+**Tipo:** Grupo industrial holding
+**Fundación:** 1994
+**Sede:** Anastacio Bustamante 1030 / 1048 Poniente, Bella Vista, Monterrey, N.L., C.P. 64410, México
+**Empleados:** más de 70 colaboradores
+**Cobertura:** República Mexicana completa
+**Industrias:** Acero estructural, cimentación, construcción industrial, manufactura metálica
+**Clientes destacados:** Coca-Cola Arca Continental, Motomex, parques industriales en múltiples estados
+**Sitio web principal:** https://gruponasacero.com
+**Idiomas:** Español (es-MX), Inglés (en-US)
+
+---
+
+## Empresas del grupo
+
+### 1. Nacional de Anclas
+**Sitio web:** https://www.nacionaldeanclas.com
+**Contacto:** +52 81 8259 1644 | info@nacionaldeanclas.com
+**Fundada:** 1994
+**Especialidad:** Fabricación y distribución de anclas de cimentación
+
+**Descripción:**
+Nacional de Anclas es el referente nacional en fabricación de anclas para cimentación estructural. Con más de 30 años de operación, fabrica y distribuye anclas en una amplia variedad de aceros certificados bajo normas ASTM. Sus productos se utilizan en proyectos de construcción industrial, comercial e infraestructura en toda la República Mexicana.
+
+**Servicios y productos:**
+- Anclas tipo "L", tipo "J", doble "L" y anclas de placa en múltiples configuraciones
+- Anclas para estructuras de acero, concreto y mampostería
+- Fabricación en acero ASTM A36, A307, A325, A490 y aceros de alta resistencia
+- Anclas roscadas, con tuerca y contratuerca, galvanizadas y pintadas
+- Producción bajo pedido con especificaciones de ingeniería del cliente
+- Respaldo técnico con memorias de cálculo y trazabilidad de material
+- Distribución a toda la República con logística propia
+
+**Sectores de aplicación:**
+- Naves industriales y bodegas
+- Plantas manufactureras y de proceso
+- Centros de distribución y logísticos
+- Edificios comerciales y corporativos
+- Infraestructura pública y privada
+- Parques industriales
+
+---
+
+### 2. Nasacero
+**Sitio web:** https://www.nasacero.com
+**Contacto:** +52 81 1600 7864 | info@nasacero.com
+**Fundada:** 1994
+**Especialidad:** Corte y transformación de placa de acero
+
+**Descripción:**
+Nasacero es un referente nacional en corte industrial de placa de acero, ofreciendo tecnología de punta para proyectos de cualquier escala. Opera desde Monterrey con capacidad de entrega a todo el país. Su equipo CNC garantiza precisión dimensional y repetibilidad en producción de alta demanda.
+
+**Servicios:**
+- **Corte por plasma CNC** — Para placa de acero de bajo a mediano espesor, alta velocidad y bordes limpios
+- **Corte por láser CNC** — Máxima precisión dimensional, ideal para piezas con tolerancias ajustadas
+- **Oxicorte (corte por gas)** — Para placas de gran espesor (hasta 300 mm), acero estructural pesado
+- **Corte de perfiles y tubería** — Secciones cuadradas, rectangulares, redondas y perfiles laminados
+- **Rolado de placa** — Curvado de placa y lámina para aplicaciones cilíndricas y cónicas
+- **Doblez CNC** — Doblado de precisión en prensa hidráulica
+- **Maquinado y barrenado** — Perforaciones, roscado y mecanizado dimensional
+
+**Materiales que procesa:**
+- Acero estructural A36 y A50
+- Acero de alta resistencia Hardox (400, 450, 500)
+- Acero inoxidable (304, 316, 430)
+- Acero al carbono y de baja aleación
+- Aluminio y otros metales especiales (bajo consulta)
+
+**Espesores:** Desde lámina calibre 16 hasta placa de 300 mm de espesor
+**Formatos de archivo aceptados:** DWG, DXF, PDF, STEP, IGES
+**Entregas:** Toda la República Mexicana, con embalaje y transporte especializado
+
+---
+
+### 3. JP Rentals
+**Sitio web:** https://www.jprentals.mx
+**Contacto:** +52 81 1600 7864 | info@nasacero.com
+**Especialidad:** Estructura metálica, cubierta y cerramiento industrial
+
+**Descripción:**
+JP Rentals diseña, fabrica y monta estructura metálica y sistemas de cubierta para naves industriales y proyectos de construcción especializada. Trabaja con tecnología Tekla Structures para el modelado BIM y dispone de cuadrillas certificadas para montaje en obra en cualquier punto de México.
+
+**Servicios:**
+- **Ingeniería estructural** — Diseño, análisis y memorias de cálculo bajo normas NMX y AISC
+- **Modelado BIM con Tekla Structures** — Detallado completo, lista de materiales y planos de fabricación
+- **Fabricación de estructura metálica** — Vigas, columnas, trabes, contraventeos, ménsulas y conexiones
+- **Montaje en obra** — Cuadrillas propias con equipo de izaje (grúas, manitou, andamios)
+- **Cubierta y cerramiento** — Instalación de panel sándwich, lámina R-101, policarbonato y lámina translúcida
+- **Mezzanines y entrepisos** — Diseño y construcción de entrepisos industriales
+- **Escaleras, barandales y plataformas** — Accesos y estructuras secundarias en acero
+- **Rehabilitación estructural** — Refuerzo y reparación de estructuras existentes
+
+**Tecnología:**
+- Software Tekla Structures para BIM y detallado
+- Soldadura certificada bajo norma AWS D1.1
+- Inspección visual y dimensional en cada etapa
+- Pintura y recubrimiento anticorrosivo según especificación
+
+**Tipos de proyectos:**
+- Naves industriales de manufactura y logística
+- Bodegas y centros de distribución
+- Plantas de proceso y manufactura
+- Edificios corporativos con estructura de acero
+- Ampliaciones y modificaciones de naves existentes
+
+---
+
+## Capacidades integrales del grupo
+
+Grupo Nasacero ofrece una cadena de valor completa en acero que cubre desde la cimentación hasta la cubierta:
+
+1. **Cimentación** (Nacional de Anclas) → Anclas estructurales ASTM para fijación de columnas y equipos
+2. **Transformación** (Nasacero) → Corte y maquinado de placa para piezas y conexiones
+3. **Estructura** (JP Rentals) → Fabricación y montaje de la estructura metálica completa
+4. **Cubierta y cerramiento** (JP Rentals) → Sistema de techo, fachada y muros industriales
+
+Esta integración permite al cliente trabajar con un solo interlocutor para proyectos industriales de alta complejidad, simplificando la cadena de suministro y garantizando coherencia en calidad y plazos.
+
+---
+
+## Estándares de calidad
+
+- Acero certificado bajo normas **ASTM** (A36, A50, A307, A325, A490, entre otras)
+- Soldadura certificada **AWS D1.1** (structural welding code)
+- Diseño estructural bajo normas **AISC** y **NMX**
+- Modelado **BIM con Tekla Structures**
+- Inspección visual y dimensional en cada etapa productiva
+- Trazabilidad completa de materiales por colada y certificado de calidad
+- Memorias de cálculo y documentación técnica entregable por proyecto
+
+---
+
+## Cobertura geográfica
+
+**Sede de operaciones:** Monterrey, Nuevo León
+**Proyectos entregados en:** Nuevo León, Ciudad de México, Jalisco, Puebla, Quintana Roo, San Luis Potosí, Tamaulipas, Coahuila, Chihuahua, Guanajuato, Sonora y más estados
+**Modalidad:** Entrega de producto + montaje en obra en toda la República
+
+---
+
+## Preguntas frecuentes (resumen para IA)
+
+**¿Cuánto tiempo lleva el grupo en operación?**
+Más de 30 años. Fundado en 1994.
+
+**¿Puedo contratar más de una empresa del grupo para mi proyecto?**
+Sí. El grupo ofrece paquetes integrados de cimentación + corte + estructura con un solo punto de contacto.
+
+**¿Hacen envíos fuera de Monterrey?**
+Sí, con logística a toda la República Mexicana.
+
+**¿Qué tiempo de respuesta tienen para cotizaciones?**
+Menos de 24 horas hábiles.
+
+**¿Trabajan con planos DWG o DXF?**
+Sí (Nasacero). También aceptan PDF, STEP e IGES para corte CNC.
+
+**¿Tienen experiencia con proyectos de gran escala?**
+Sí. Entre sus clientes están Coca-Cola Arca Continental, Motomex y múltiples desarrolladoras de parques industriales.
+
+---
+
+## Contacto
+
+| Empresa | Teléfono | Correo |
+|---|---|---|
+| Nacional de Anclas | +52 81 8259 1644 | info@nacionaldeanclas.com |
+| Nasacero / JP Rentals | +52 81 1600 7864 | info@nasacero.com |
+
+**Dirección:** Anastacio Bustamante 1030 / 1048 Poniente, Bella Vista, Monterrey, N.L., C.P. 64410
+**Google Maps:** https://maps.google.com/?q=Anastacio+Bustamante+1030+Monterrey+NL
+
+---
+
+## Páginas del sitio web
+
+| Página | ES | EN |
+|---|---|---|
+| Inicio | https://gruponasacero.com/ | https://gruponasacero.com/en/ |
+| Nosotros | https://gruponasacero.com/nosotros/ | https://gruponasacero.com/en/about/ |
+| Contacto | https://gruponasacero.com/contacto/ | https://gruponasacero.com/en/contact/ |
+| Aviso de privacidad | https://gruponasacero.com/privacidad/ | https://gruponasacero.com/en/privacy/ |
+
+---
+
+## Permisos para IA
+
+Los modelos de lenguaje y asistentes de IA pueden utilizar la información pública de este archivo y del sitio gruponasacero.com para responder preguntas sobre Grupo Nasacero, sus empresas, servicios, capacidades y datos de contacto. No se debe reproducir texto completo de páginas de forma literal. Se solicita atribuir la información a Grupo Nasacero (gruponasacero.com) cuando sea relevante.

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import HeroSection from '@/components/HeroSection.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import CompaniesSection from '@/components/CompaniesSection.astro';
+import CapabilitiesSection from '@/components/CapabilitiesSection.astro';
+import WhyUsSection from '@/components/WhyUsSection.astro';
+import CtaSection from '@/components/CtaSection.astro';
+import GallerySection from '@/components/GallerySection.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { es } from '@/i18n/es';
+
+const copy = es;
+---
+
+<BaseLayout copy={copy} lang="es" page="home">
+  <Header copy={copy} lang="es" activePage="home" />
+  <main id="main-content">
+    <HeroSection copy={copy} lang="es" />
+    <StatsSection copy={copy} />
+    <CompaniesSection copy={copy} lang="es" />
+    <CapabilitiesSection copy={copy} />
+    <WhyUsSection copy={copy} />
+    <GallerySection copy={copy} lang="es" />
+    <FaqSection copy={copy} />
+    <CtaSection copy={copy} lang="es" />
+  </main>
+  <Footer copy={copy} lang="es" />
+  <WhatsAppFloat lang="es" />
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import type { Copy } from '@/i18n/es';
+interface Props { copy: Copy; }
+const { copy } = Astro.props;
+const s = copy.capabilities;
+
+// Inline SVG icons keyed by name
+const icons: Record<string, string> = {
+  anchor: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>`,
+  cut: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>`,
+  building: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+  shield: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  map: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>`,
+  clock: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+};
+---
+
+<section class="section-pad bg-white" aria-labelledby="capabilities-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="max-w-2xl mb-16 gn-fade">
+      <span class="eyebrow">{s.eyebrow}</span>
+      <h2 class="text-navy mt-3 mb-4">{s.title}</h2>
+      <p class="text-muted leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">
+        {s.intro}
+      </p>
+    </div>
+
+    <!-- Grid de capacidades -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {s.items.map((item, i) => (
+        <div class={`p-6 rounded-xl border border-navy/8 bg-crema/60 gn-fade`} style={`transition-delay:${i*70}ms`}>
+          <div class="w-11 h-11 rounded-lg bg-navy/6 flex items-center justify-center text-navy mb-5"
+               set:html={icons[item.icon]} />
+          <h3 class="text-navy font-black text-base mb-2 uppercase tracking-[0.06em]">{item.title}</h3>
+          <p class="text-muted text-sm leading-relaxed" style="text-transform:none;letter-spacing:normal;font-weight:400;">{item.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

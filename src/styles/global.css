@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans text-ink bg-crema;
+  }
+
+  ::selection {
+    @apply bg-mustard text-navy-deep;
+  }
+
+  h1, h2, h3, h4 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 0.9rem + 3vw, 2.8rem);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+  }
+
+  h3 {
+    font-size: clamp(1.1rem, 0.8rem + 1.2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+}
+
+@layer components {
+  /* Botones */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 bg-coral text-white font-semibold text-sm rounded-lg uppercase tracking-[0.06em];
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover {
+    @apply bg-coral-dark;
+    box-shadow: 0 10px 28px rgba(200,67,58,0.28);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-navy text-navy font-semibold text-sm rounded-lg uppercase tracking-[0.06em];
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .btn-ghost:hover {
+    @apply bg-navy text-crema;
+  }
+
+  .btn-ghost-white {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-4 border-2 border-white text-white font-semibold text-sm rounded-lg uppercase tracking-[0.06em];
+    transition: background 0.2s ease, color 0.2s ease;
+    background: rgba(255,255,255,0.08);
+  }
+  .btn-ghost-white:hover {
+    background: rgba(255,255,255,0.18);
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-coral font-black uppercase tracking-[0.22em];
+    font-size: 0.68rem;
+  }
+
+  /* Sección base */
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  /* Card estilo grupo */
+  .gn-card {
+    @apply bg-white rounded-2xl border border-navy/10;
+    box-shadow: 0 4px 24px rgba(26,38,64,0.08);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+  }
+  .gn-card:hover {
+    box-shadow: 0 12px 40px rgba(26,38,64,0.16);
+    transform: translateY(-3px);
+  }
+
+  /* Surface mist */
+  .gn-surface {
+    background: #eceaf4;
+  }
+}
+
+/* Animación fade-in con IntersectionObserver */
+.gn-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.gn-fade.gn-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger */
+.gn-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.gn-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.gn-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.gn-stagger > *:nth-child(4) { transition-delay: 240ms; }
+
+/* Scroll offset para header fijo */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Focus ring accesible */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #e8b33e;
+  outline-offset: 2px;
+}
+
+/* Divider decorativo en navy */
+.gn-divider {
+  width: 3rem;
+  height: 3px;
+  background: #c8433a;
+  border-radius: 2px;
+  margin: 1rem 0 1.5rem;
+}

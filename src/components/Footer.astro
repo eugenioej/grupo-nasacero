@@ -1,0 +1,103 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+}
+
+const { copy, lang } = Astro.props;
+const f = copy.footer;
+const c = copy.cta;
+const nav = copy.nav;
+
+const navLinks = [
+  { href: lang === 'es' ? '/' : '/en/', label: nav.home },
+  { href: lang === 'es' ? '/nosotros/' : '/en/about/', label: nav.about },
+  { href: lang === 'es' ? '/contacto/' : '/en/contact/', label: nav.contact },
+];
+
+const companies = copy.companies.items;
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-navy-deep text-white">
+  <!-- Main footer -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <a href={lang === 'es' ? '/' : '/en/'} class="flex items-center group mb-5" aria-label="Grupo Nasacero — Inicio">
+          <div class="flex flex-col leading-tight">
+            <span class="font-black text-sm uppercase tracking-[0.08em] text-white/80">Grupo</span>
+            <span class="font-black text-sm uppercase tracking-[0.08em] text-coral -mt-0.5">Nasacero</span>
+          </div>
+        </a>
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs">{f.description}</p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-white/40 mb-5 normal-case" style="text-transform:none;letter-spacing:0.2em;">{f.linksTitle}</h3>
+        <ul class="flex flex-col gap-3">
+          {navLinks.map(l => (
+            <li>
+              <a href={l.href} class="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Companies -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-white/40 mb-5 normal-case" style="text-transform:none;letter-spacing:0.2em;">{f.companiesTitle}</h3>
+        <ul class="flex flex-col gap-3">
+          {companies.map(c => (
+            <li>
+              <a href={c.url} target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200 flex items-center gap-1.5">
+                {c.name}
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="opacity-50"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-white/40 mb-5 normal-case" style="text-transform:none;letter-spacing:0.2em;">{f.contactTitle}</h3>
+        <ul class="flex flex-col gap-3">
+          {c.phones.map(p => (
+            <li>
+              <a href={p.href} class="text-white/70 hover:text-white text-sm font-medium transition-colors duration-200">{p.display}</a>
+              <span class="block text-white/35 text-xs">{p.name}</span>
+            </li>
+          ))}
+          <li class="pt-1">
+            {c.emails.map(email => (
+              <a href={`mailto:${email}`} class="block text-white/70 hover:text-white text-sm font-medium transition-colors duration-200">{email}</a>
+            ))}
+          </li>
+          <li class="pt-1">
+            {c.address.map(line => (
+              <span class="block text-white/50 text-xs leading-relaxed">{line}</span>
+            ))}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-white/8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/35 text-xs">© {year} {f.rights}</p>
+      <div class="flex items-center gap-4">
+        <a href={lang === 'es' ? '/privacidad/' : '/en/privacy/'} class="text-white/35 hover:text-white/60 text-xs transition-colors">{f.legal}</a>
+        <span class="text-white/20 text-xs">|</span>
+        <a href={nav.langHref} class="text-white/35 hover:text-white/60 text-xs font-bold uppercase tracking-widest transition-colors">{nav.lang}</a>
+      </div>
+    </div>
+  </div>
+</footer>

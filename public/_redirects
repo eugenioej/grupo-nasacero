@@ -1,0 +1,10 @@
+# Cloudflare Pages redirects
+/en  /en/  301
+
+# Trailing slash normalization
+/nosotros  /nosotros/  301
+/contacto  /contacto/  301
+/en/about  /en/about/  301
+/en/contact  /en/contact/  301
+/privacidad  /privacidad/  301
+/en/privacy  /en/privacy/  301

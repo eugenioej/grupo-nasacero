@@ -1,0 +1,109 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+}
+
+const { copy } = Astro.props;
+const f = copy.faq;
+---
+
+<section class="section-pad bg-crema" aria-labelledby="faq-title">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-14 gn-fade">
+      <span class="eyebrow mb-3 block">{f.eyebrow}</span>
+      <h2 id="faq-title" class="text-navy">{f.title}</h2>
+    </div>
+
+    <!-- Accordion -->
+    <div class="flex flex-col gap-3 gn-fade" style="transition-delay: 80ms;" id="faq-list">
+      {f.items.map((item, i) => (
+        <div
+          class="gn-card overflow-hidden"
+          id={`faq-item-${i}`}
+        >
+          <button
+            type="button"
+            class="w-full flex items-start justify-between gap-4 p-6 md:p-7 text-left group"
+            aria-expanded="false"
+            aria-controls={`faq-body-${i}`}
+            id={`faq-btn-${i}`}
+          >
+            <span class="text-navy font-bold text-base leading-snug group-hover:text-coral transition-colors pr-2"
+                  style="text-transform:none;letter-spacing:normal;">
+              {item.q}
+            </span>
+            <!-- Plus/minus icon -->
+            <span class="flex-shrink-0 w-7 h-7 rounded-full bg-navy/6 flex items-center justify-center text-navy group-hover:bg-coral/10 group-hover:text-coral transition-all mt-0.5 faq-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="transition-transform duration-300">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </button>
+          <div
+            id={`faq-body-${i}`}
+            role="region"
+            aria-labelledby={`faq-btn-${i}`}
+            class="overflow-hidden transition-all duration-300 ease-in-out"
+            style="max-height: 0;"
+          >
+            <p class="text-muted text-sm leading-relaxed px-6 md:px-7 pb-6"
+               style="text-transform:none;letter-spacing:normal;font-weight:400;">
+              {item.a}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function initFaq() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[id^="faq-btn-"]');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        const bodyId = btn.getAttribute('aria-controls')!;
+        const body = document.getElementById(bodyId)!;
+        const icon = btn.querySelector('svg')!;
+        const card = btn.closest('[id^="faq-item-"]')!;
+
+        // Close all others
+        buttons.forEach((otherBtn) => {
+          if (otherBtn !== btn) {
+            const otherBodyId = otherBtn.getAttribute('aria-controls')!;
+            const otherBody = document.getElementById(otherBodyId)!;
+            const otherIcon = otherBtn.querySelector('svg')!;
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBody.style.maxHeight = '0';
+            otherIcon.style.transform = 'rotate(0deg)';
+            otherBtn.closest('[id^="faq-item-"]')!.classList.remove('ring-1', 'ring-coral/20');
+          }
+        });
+
+        // Toggle current
+        if (isExpanded) {
+          btn.setAttribute('aria-expanded', 'false');
+          body.style.maxHeight = '0';
+          icon.style.transform = 'rotate(0deg)';
+          card.classList.remove('ring-1', 'ring-coral/20');
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          body.style.maxHeight = body.scrollHeight + 'px';
+          icon.style.transform = 'rotate(45deg)';
+          card.classList.add('ring-1', 'ring-coral/20');
+        }
+      });
+    });
+  }
+
+  // Run on initial load and after view transitions
+  initFaq();
+  document.addEventListener('astro:page-load', initFaq);
+</script>

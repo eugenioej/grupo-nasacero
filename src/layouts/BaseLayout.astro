@@ -1,0 +1,183 @@
+---
+import '@/styles/global.css';
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+  page: 'home' | 'about' | 'contact' | 'privacy';
+  canonical?: string;
+}
+
+const { copy, lang, page, canonical } = Astro.props;
+const origin = Astro.site?.origin ?? 'https://gruponasacero.com';
+
+const pageMeta = copy.meta[page];
+const htmlLang = lang === 'es' ? 'es-MX' : 'en-US';
+
+const esSlug: Record<string, string> = { home: '/', about: '/nosotros/', contact: '/contacto/', privacy: '/privacidad/' };
+const enSlug: Record<string, string> = { home: '/en/', about: '/en/about/', contact: '/en/contact/', privacy: '/en/privacy/' };
+
+const canonicalUrl = canonical ?? (lang === 'es' ? `${origin}${esSlug[page]}` : `${origin}${enSlug[page]}`);
+const esUrl = `${origin}${esSlug[page]}`;
+const enUrl = `${origin}${enSlug[page]}`;
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${origin}/#organization`,
+      "name": "Grupo Nasacero",
+      "url": origin,
+      "logo": `${origin}/images/grupo-nasacero-logo.svg`,
+      "description": "Grupo industrial especializado en acero y construcción en México. Fundado en 1994 en Monterrey, Nuevo León.",
+      "foundingDate": "1994",
+      "areaServed": "MX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Anastacio Bustamante 1030 / 1048 Poniente",
+        "addressLocality": "Monterrey",
+        "addressRegion": "Nuevo León",
+        "postalCode": "64410",
+        "addressCountry": "MX"
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+52-81-8259-1644",
+          "contactType": "sales",
+          "areaServed": "MX",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+52-81-1600-7864",
+          "contactType": "sales",
+          "areaServed": "MX",
+          "availableLanguage": ["Spanish", "English"]
+        }
+      ],
+      "email": "info@nasacero.com",
+      "sameAs": [
+        "https://www.nasacero.com",
+        "https://www.nacionaldeanclas.com",
+        "https://www.jprentals.mx"
+      ],
+      "subOrganization": [
+        {
+          "@type": "Organization",
+          "name": "Nacional de Anclas",
+          "url": "https://www.nacionaldeanclas.com",
+          "foundingDate": "1994",
+          "description": "Fabricación y distribución de anclas de cimentación para proyectos estructurales en México."
+        },
+        {
+          "@type": "Organization",
+          "name": "Nasacero",
+          "url": "https://www.nasacero.com",
+          "foundingDate": "1994",
+          "description": "Corte de placa de acero por plasma, láser CNC y oxicorte con cobertura nacional en México."
+        },
+        {
+          "@type": "Organization",
+          "name": "JP Rentals",
+          "url": "https://www.jprentals.mx",
+          "description": "Diseño, fabricación y montaje de estructura metálica y laminado para naves industriales en México."
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${origin}/#website`,
+      "url": origin,
+      "name": "Grupo Nasacero",
+      "publisher": { "@id": `${origin}/#organization` },
+      "inLanguage": ["es-MX", "en-US"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": pageMeta.title,
+      "description": pageMeta.description,
+      "isPartOf": { "@id": `${origin}/#website` },
+      "publisher": { "@id": `${origin}/#organization` },
+      "inLanguage": htmlLang
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{pageMeta.title}</title>
+    <meta name="description" content={pageMeta.description} />
+    <meta name="keywords" content={pageMeta.keywords} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="author" content="Grupo Nasacero" />
+
+    <!-- Canonical + hreflang -->
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es-MX" href={esUrl} />
+    <link rel="alternate" hreflang="en-US" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={esUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Grupo Nasacero" />
+    <meta property="og:title" content={pageMeta.title} />
+    <meta property="og:description" content={pageMeta.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_MX' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_MX'} />
+    <meta property="og:image" content={`${origin}/images/og-grupo-nasacero.jpg`} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Grupo Nasacero — Grupo Industrial en Acero y Construcción, México" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageMeta.title} />
+    <meta name="twitter:description" content={pageMeta.description} />
+    <meta name="twitter:image" content={`${origin}/images/og-grupo-nasacero.jpg`} />
+    <meta name="twitter:image:alt" content="Grupo Nasacero — Grupo Industrial en Acero y Construcción, México" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body>
+    <slot />
+    <!-- IntersectionObserver para animaciones fade-in -->
+    <script is:inline>
+      const o = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add('gn-visible');
+          });
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('.gn-fade').forEach((el) => o.observe(el));
+    </script>
+  </body>
+</html>

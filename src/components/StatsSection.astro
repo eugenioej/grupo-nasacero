@@ -1,0 +1,27 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props { copy: Copy; }
+const { copy } = Astro.props;
+const s = copy.stats;
+---
+
+<section class="bg-navy py-14 md:py-16" aria-labelledby="stats-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <p id="stats-title" class="sr-only">{s.eyebrow}</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+      {s.items.map((item, i) => (
+        <div class={`text-center gn-fade ${i > 0 ? `gn-stagger` : ''}`} style={i > 0 ? `transition-delay:${i*80}ms` : ''}>
+          <div class="font-black text-white uppercase"
+               style="font-size: clamp(2.2rem, 1.5rem + 2.5vw, 3.5rem); letter-spacing: 0.05em; line-height:1;">
+            {item.value}
+          </div>
+          <div class="text-white/50 text-xs font-semibold uppercase tracking-[0.18em] mt-2">{item.label}</div>
+          {i < s.items.length - 1 && (
+            <div class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-10 bg-white/10" aria-hidden="true"></div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import HeroSection from '@/components/HeroSection.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import CompaniesSection from '@/components/CompaniesSection.astro';
+import CapabilitiesSection from '@/components/CapabilitiesSection.astro';
+import WhyUsSection from '@/components/WhyUsSection.astro';
+import CtaSection from '@/components/CtaSection.astro';
+import GallerySection from '@/components/GallerySection.astro';
+import FaqSection from '@/components/FaqSection.astro';
+import WhatsAppFloat from '@/components/WhatsAppFloat.astro';
+import { en } from '@/i18n/en';
+
+const copy = en;
+---
+
+<BaseLayout copy={copy} lang="en" page="home" canonical="https://gruponasacero.com/en/">
+  <Header copy={copy} lang="en" activePage="home" />
+  <main id="main-content">
+    <HeroSection copy={copy} lang="en" />
+    <StatsSection copy={copy} />
+    <CompaniesSection copy={copy} lang="en" />
+    <CapabilitiesSection copy={copy} />
+    <WhyUsSection copy={copy} />
+    <GallerySection copy={copy} lang="en" />
+    <FaqSection copy={copy} />
+    <CtaSection copy={copy} lang="en" />
+  </main>
+  <Footer copy={copy} lang="en" />
+  <WhatsAppFloat lang="en" />
+</BaseLayout>

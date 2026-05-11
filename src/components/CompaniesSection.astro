@@ -1,0 +1,144 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+}
+
+const { copy } = Astro.props;
+const s = copy.companies;
+
+// Per-company visual config
+const visuals = [
+  {
+    logo: '/images/logos/nacional-de-anclas-logo.webp',
+    logoBg: 'bg-white',
+    photo: '/images/empresas/anclas-asistencia.webp',
+    photoBg: 'linear-gradient(135deg, #c8433a 0%, #8b1f1a 100%)',
+    accent: '#c8433a',
+    border: 'rgba(200,67,58,0.25)',
+    badgeBg: 'rgba(200,67,58,0.15)',
+    badgeColor: '#c8433a',
+    linkColor: 'text-coral hover:text-coral/70',
+    dotColor: 'bg-coral',
+  },
+  {
+    logo: '/images/logos/nasacero-logo.webp',
+    logoBg: 'bg-white',
+    photo: '/images/empresas/nasacero-laser.webp',
+    photoBg: 'linear-gradient(135deg, #1a2640 0%, #0f172a 100%)',
+    accent: '#1a2640',
+    border: 'rgba(26,38,64,0.2)',
+    badgeBg: 'rgba(26,38,64,0.08)',
+    badgeColor: '#1a2640',
+    linkColor: 'text-navy hover:text-navy/70',
+    dotColor: 'bg-navy',
+  },
+  {
+    logo: '/images/logos/jp-rentals-logo.svg',
+    logoBg: 'bg-white',
+    photo: '/images/empresas/jprentals-grua-2.webp',
+    photoBg: 'linear-gradient(135deg, #b8892e 0%, #e8b33e 100%)',
+    accent: '#e8b33e',
+    border: 'rgba(232,179,62,0.3)',
+    badgeBg: 'rgba(232,179,62,0.15)',
+    badgeColor: '#9a6e10',
+    linkColor: 'text-mustard-dark hover:text-mustard-dark/70',
+    dotColor: 'bg-mustard',
+  },
+];
+---
+
+<section id="empresas" class="section-pad bg-crema" aria-labelledby="companies-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16 gn-fade">
+      <span class="eyebrow">{s.eyebrow}</span>
+      <h2 class="text-navy mt-3 mb-5">{s.title}</h2>
+      <p class="text-muted text-base md:text-lg leading-relaxed" style="text-transform:none;letter-spacing:normal;font-size:1rem;font-weight:400;">
+        {s.intro}
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {s.items.map((company, i) => {
+        const v = visuals[i];
+        return (
+          <article
+            class="gn-card flex flex-col overflow-hidden gn-fade"
+            style={`transition-delay:${i * 100}ms`}
+            aria-label={company.name}
+          >
+            <!-- Visual block: photo or branded gradient -->
+            <div class="relative h-44 flex-shrink-0 overflow-hidden">
+              {v.photo ? (
+                <>
+                  <img
+                    src={v.photo}
+                    alt={`${company.name} — instalaciones`}
+                    class="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="176"
+                  />
+                  <!-- Dark overlay so logo reads clearly -->
+                  <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 100%);"></div>
+                </>
+              ) : (
+                <div class="absolute inset-0" style={`background: ${v.photoBg};`}>
+                  <!-- Subtle grid pattern -->
+                  <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 32px 32px;"></div>
+                </div>
+              )}
+
+              <!-- Logo pill -->
+              <div class="absolute bottom-4 left-5">
+                <div class={`${v.logoBg} rounded-lg px-3 py-2 shadow-lg inline-flex items-center justify-center`}
+                     style="min-width: 120px; max-width: 160px; height: 44px;">
+                  <img
+                    src={v.logo}
+                    alt={`${company.name} logo`}
+                    class="max-h-8 max-w-[140px] w-auto object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    width="140"
+                    height="32"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col flex-1 p-7">
+              <p class="eyebrow mb-2" style={`color: ${v.accent};`}>{company.tagline}</p>
+              <h3 class="text-navy font-black text-lg mb-3 uppercase tracking-tight leading-tight">
+                {company.name}
+              </h3>
+              <p class="text-muted text-sm leading-relaxed flex-1" style="text-transform:none;letter-spacing:normal;font-weight:400;">
+                {company.body}
+              </p>
+
+              <!-- Link -->
+              <a
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`inline-flex items-center gap-2 mt-6 pt-5 border-t border-navy/8 text-sm font-semibold ${v.linkColor} transition-opacity group`}
+                aria-label={`Visitar ${company.name}`}
+              >
+                <span class={`w-2 h-2 rounded-full ${v.dotColor} flex-shrink-0`} aria-hidden="true"></span>
+                {company.urlDisplay}
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="ml-auto group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

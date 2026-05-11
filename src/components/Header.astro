@@ -1,0 +1,196 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+  activePage: 'home' | 'about' | 'contact';
+}
+
+const { copy, lang, activePage } = Astro.props;
+const nav = copy.nav;
+
+const links = [
+  { href: lang === 'es' ? '/' : '/en/', label: nav.home, page: 'home' },
+  { href: lang === 'es' ? '/nosotros/' : '/en/about/', label: nav.about, page: 'about' },
+  { href: lang === 'es' ? '/contacto/' : '/en/contact/', label: nav.contact, page: 'contact' },
+];
+---
+
+<header class="gn-header fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="gn-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-[4.75rem]">
+
+      <!-- Logo -->
+      <a href={lang === 'es' ? '/' : '/en/'} class="flex items-center" aria-label="Grupo Nasacero — Inicio">
+        <div class="flex flex-col leading-tight">
+          <span class="font-black text-base uppercase tracking-[0.08em] text-navy">Grupo</span>
+          <span class="font-black text-base uppercase tracking-[0.08em] text-coral -mt-1">Nasacero</span>
+        </div>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav class="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class={`px-4 py-2 rounded-lg text-sm font-semibold uppercase tracking-[0.06em] transition-all duration-200 ${
+              activePage === link.page
+                ? 'text-coral bg-coral/8'
+                : 'text-navy/80 hover:text-navy hover:bg-navy/6'
+            }`}
+            aria-current={activePage === link.page ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+        <div class="w-px h-5 bg-navy/15 mx-2" aria-hidden="true"></div>
+        <a
+          href={nav.langHref}
+          class="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-bold uppercase tracking-[0.1em] text-muted hover:text-navy hover:bg-navy/6 transition-all duration-200"
+          hreflang={lang === 'es' ? 'en' : 'es'}
+          aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+        >
+          <span class="text-base leading-none" aria-hidden="true">{lang === 'es' ? '🇺🇸' : '🇲🇽'}</span>
+          {nav.lang}
+        </a>
+        <a href={lang === 'es' ? '/contacto/' : '/en/contact/'} class="btn-primary ml-3 !py-2.5 !px-5 text-xs uppercase tracking-[0.06em]">
+          {nav.contact}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </nav>
+
+      <!-- Mobile right side: lang switcher + hamburger -->
+      <div class="md:hidden flex items-center gap-1">
+
+        <!-- Language switcher — always visible on mobile -->
+        <a
+          href={nav.langHref}
+          class="flex items-center gap-1 px-2.5 py-2 rounded-lg text-xs font-bold uppercase tracking-[0.1em] text-navy/70 hover:text-navy hover:bg-navy/6 transition-all duration-200"
+          hreflang={lang === 'es' ? 'en' : 'es'}
+          aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
+        >
+          <span class="text-sm leading-none" aria-hidden="true">{lang === 'es' ? '🇺🇸' : '🇲🇽'}</span>
+          <span>{nav.lang}</span>
+        </a>
+
+        <!-- Hamburger / close button -->
+        <button
+          id="gn-menu-btn"
+          class="flex items-center justify-center w-9 h-9 rounded-lg text-navy hover:bg-navy/8 transition-colors"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="gn-mobile-menu"
+        >
+          <!-- Hamburger icon -->
+          <svg id="gn-icon-open" class="gn-menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+          <!-- Close (X) icon -->
+          <svg id="gn-icon-close" class="gn-menu-icon hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="gn-mobile-menu"
+    class="md:hidden bg-white border-t border-navy/10 shadow-card gn-mobile-menu"
+    role="navigation"
+    aria-label="Menú móvil"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class={`px-4 py-3 rounded-lg text-sm font-semibold uppercase tracking-[0.06em] transition-colors ${
+            activePage === link.page ? 'text-coral bg-coral/8' : 'text-navy hover:bg-navy/6'
+          }`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="h-px bg-navy/10 my-2"></div>
+      <a href={lang === 'es' ? '/contacto/' : '/en/contact/'} class="btn-primary mt-1 justify-center uppercase tracking-[0.06em]">
+        {nav.contact}
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Offset de header fijo -->
+<div class="h-[4.75rem]" aria-hidden="true"></div>
+
+<style>
+  .gn-header {
+    background: rgba(240, 237, 232, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26, 38, 64, 0.08);
+  }
+  .gn-header.scrolled {
+    background: rgba(240, 237, 232, 0.97);
+    box-shadow: 0 4px 20px rgba(26, 38, 64, 0.08);
+  }
+
+  /* Mobile menu slide-down animation */
+  .gn-mobile-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.22s ease;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .gn-mobile-menu > div {
+    overflow: hidden;
+  }
+  .gn-mobile-menu.gn-menu-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Icon swap animation */
+  .gn-menu-icon {
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .gn-menu-icon.hidden {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  // Header scroll state
+  const header = document.getElementById('gn-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) header?.classList.add('scrolled');
+    else header?.classList.remove('scrolled');
+  }, { passive: true });
+
+  // Mobile menu toggle with icon swap + slide animation
+  const btn      = document.getElementById('gn-menu-btn');
+  const menu     = document.getElementById('gn-mobile-menu');
+  const iconOpen  = document.getElementById('gn-icon-open');
+  const iconClose = document.getElementById('gn-icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('gn-menu-open');
+    btn.setAttribute('aria-expanded', String(isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+
+    if (isOpen) {
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+    } else {
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    }
+  });
+</script>

@@ -1,0 +1,88 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+}
+
+const { copy } = Astro.props;
+const h = copy.hero;
+---
+
+<section
+  class="relative min-h-[calc(100svh-4.75rem)] flex items-center overflow-hidden bg-navy-deep"
+  aria-label="Hero principal"
+>
+  <!-- Fondo: foto real con overlay -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <!-- Foto de fondo -->
+    <img
+      src="/images/empresas/jprentals-kandelium.webp"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      style="opacity: 0.35;"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <!-- Gradiente encima: navy profundo cubre izquierda y se abre a la derecha -->
+    <div class="absolute inset-0" style="background: linear-gradient(110deg, rgba(10,15,28,0.97) 0%, rgba(26,38,64,0.88) 45%, rgba(26,38,64,0.55) 100%);"></div>
+    <!-- Patrón de cuadrícula técnica sutil -->
+    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 60px 60px;"></div>
+    <!-- Acento coral diagonal derecha -->
+    <div class="absolute top-0 right-0 w-1/2 h-full" style="background: linear-gradient(135deg, transparent 40%, rgba(200,67,58,0.10) 100%);"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+    <div class="max-w-3xl">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="h-px w-8 bg-coral" aria-hidden="true"></div>
+        <span class="eyebrow text-coral/90">{h.eyebrow}</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-white font-black uppercase leading-[1.05] mb-6"
+          style="font-size: clamp(2.4rem, 2rem + 3.5vw, 4.5rem); letter-spacing: 0.04em;">
+        {h.headline}
+      </h1>
+
+      <!-- Sub -->
+      <p class="text-white/70 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-normal" style="text-transform: none; letter-spacing: normal;">
+        {h.sub}
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4">
+        <a href={h.cta1Href} class="btn-primary">
+          {h.cta1}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href={h.cta2Href} class="btn-ghost-white">
+          {h.cta2}
+        </a>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap gap-6 mt-12 pt-10 border-t border-white/10">
+        {[
+          { label: '+30 años', sub: 'de experiencia' },
+          { label: '3 empresas', sub: 'especializadas' },
+          { label: 'Nacional', sub: 'cobertura total' },
+        ].map((badge) => (
+          <div class="flex flex-col">
+            <span class="text-white font-black text-xl uppercase tracking-wider">{badge.label}</span>
+            <span class="text-white/45 text-xs uppercase tracking-[0.15em] font-medium mt-0.5">{badge.sub}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30" aria-hidden="true">
+    <div class="w-px h-12 bg-gradient-to-b from-transparent to-white/30"></div>
+  </div>
+</section>

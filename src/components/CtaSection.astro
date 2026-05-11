@@ -1,0 +1,79 @@
+---
+import type { Copy } from '@/i18n/es';
+interface Props { copy: Copy; lang: 'es' | 'en'; }
+const { copy, lang } = Astro.props;
+const s = copy.cta;
+---
+
+<section id="contacto" class="section-pad bg-crema" aria-labelledby="cta-title">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+
+      <!-- Card principal -->
+      <div class="bg-white rounded-3xl border border-navy/10 overflow-hidden" style="box-shadow: 0 24px 80px rgba(26,38,64,0.12);">
+        <div class="grid grid-cols-1 lg:grid-cols-5">
+
+          <!-- Texto izquierda -->
+          <div class="lg:col-span-3 p-8 md:p-12 lg:p-14">
+            <span class="eyebrow mb-4 block">Contacto</span>
+            <h2 id="cta-title" class="text-navy mb-4">{s.title}</h2>
+            <p class="text-muted text-base leading-relaxed mb-8" style="text-transform:none;letter-spacing:normal;font-weight:400;">
+              {s.body}
+            </p>
+
+            <!-- Emails -->
+            <div class="flex flex-col gap-3">
+              {s.emails.map(email => (
+                <a
+                  href={`mailto:${email}?subject=${encodeURIComponent(lang === 'es' ? 'Consulta — Grupo Nasacero' : 'Inquiry — Grupo Nasacero')}`}
+                  class="btn-primary inline-flex"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  {email}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Info derecha -->
+          <div class="lg:col-span-2 bg-navy p-8 md:p-10 flex flex-col gap-8">
+
+            <!-- Teléfonos -->
+            <div>
+              <p class="text-white/40 text-xs font-black uppercase tracking-[0.2em] mb-4">{s.label1}</p>
+              <div class="flex flex-col gap-3">
+                {s.phones.map(p => (
+                  <a href={p.href} class="group">
+                    <span class="block text-white font-bold text-lg group-hover:text-mustard transition-colors">{p.display}</span>
+                    <span class="text-white/40 text-xs">{p.name}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <!-- Dirección -->
+            <div>
+              <p class="text-white/40 text-xs font-black uppercase tracking-[0.2em] mb-4">{s.label3}</p>
+              {s.address.map(line => (
+                <span class="block text-white/70 text-sm leading-relaxed">{line}</span>
+              ))}
+              <a
+                href={s.mapHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-mustard text-xs font-semibold uppercase tracking-[0.12em] mt-3 hover:opacity-80 transition-opacity"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                {s.mapLabel}
+              </a>
+            </div>
+
+            <!-- Línea coral decorativa -->
+            <div class="h-1 w-12 rounded-full bg-coral mt-auto" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

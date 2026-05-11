@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { en } from '@/i18n/en';
+
+const copy = en;
+---
+
+<BaseLayout copy={copy} lang="en" page="privacy" canonical="https://gruponasacero.com/en/privacy/">
+  <Header copy={copy} lang="en" activePage="home" />
+  <main id="main-content" class="section-pad bg-crema min-h-[60vh]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="eyebrow mb-4 block">Legal</span>
+      <h1 class="text-navy mb-8" style="font-size:2rem;">Privacy Policy</h1>
+      <div class="prose prose-navy max-w-none" style="text-transform:none;letter-spacing:normal;">
+        <p class="text-muted leading-relaxed mb-6">
+          <strong>Grupo Nasacero</strong> (which includes Nacional de Anclas, Nasacero and JP Rentals), with registered address at Anastacio Bustamante 1030 / 1048 Poniente, Bella Vista, Monterrey, N.L., C.P. 64410, Mexico, is responsible for the processing of your personal data.
+        </p>
+        <h2 class="text-navy text-lg font-black uppercase tracking-wide mb-3 mt-8">Data we collect</h2>
+        <p class="text-muted leading-relaxed mb-4">We collect name, company, email and phone number for the purpose of handling commercial and customer service inquiries. We do not share your data with third parties without your consent.</p>
+        <h2 class="text-navy text-lg font-black uppercase tracking-wide mb-3 mt-8">Purpose</h2>
+        <p class="text-muted leading-relaxed mb-4">Your data is used exclusively to follow up on inquiries and quote requests related to the services of Grupo Nasacero and its companies.</p>
+        <h2 class="text-navy text-lg font-black uppercase tracking-wide mb-3 mt-8">ARCO Rights</h2>
+        <p class="text-muted leading-relaxed mb-4">You may exercise your rights of access, rectification, cancellation or opposition by sending an email to <a href="mailto:info@nasacero.com" class="text-coral hover:opacity-80">info@nasacero.com</a>.</p>
+        <h2 class="text-navy text-lg font-black uppercase tracking-wide mb-3 mt-8">Changes to this policy</h2>
+        <p class="text-muted leading-relaxed">We reserve the right to modify this privacy policy at any time. Modifications will be available on this website.</p>
+      </div>
+    </div>
+  </main>
+  <Footer copy={copy} lang="en" />
+</BaseLayout>

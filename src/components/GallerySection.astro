@@ -1,0 +1,216 @@
+---
+import type { Copy } from '@/i18n/es';
+
+interface Props {
+  copy: Copy;
+  lang: 'es' | 'en';
+}
+
+const { copy, lang } = Astro.props;
+
+// Row 1 — desplazamiento izquierda (8 fotos)
+const row1 = [
+  { src: '/images/empresas/nasacero-laser.webp',     alt: 'Corte láser CNC — Nasacero' },
+  { src: '/images/empresas/jprentals-grua-2.webp',   alt: 'Maniobra con grúa — JP Rentals' },
+  { src: '/images/empresas/anclas-asistencia.webp',  alt: 'Asistencia técnica — Nacional de Anclas' },
+  { src: '/images/empresas/jprentals-montaje.webp',  alt: 'Montaje estructural — JP Rentals' },
+  { src: '/images/empresas/nasacero-laminado.webp',  alt: 'Acero laminado — Nasacero' },
+  { src: '/images/empresas/jprentals-grua-6.webp',   alt: 'Operación industrial — JP Rentals' },
+  { src: '/images/empresas/anclas-galeria-1.webp',   alt: 'Anclas de cimentación — Nacional de Anclas' },
+  { src: '/images/empresas/nasacero-doblez.webp',    alt: 'Doblez en frío — Nasacero' },
+];
+
+// Row 2 — desplazamiento derecha (7 fotos)
+const row2 = [
+  { src: '/images/empresas/nasacero-corte-cnc.webp',  alt: 'Corte CNC — Nasacero' },
+  { src: '/images/empresas/jprentals-kandelium.webp', alt: 'Maniobra industrial — JP Rentals' },
+  { src: '/images/empresas/anclas-galeria-2.webp',    alt: 'Anclas — Nacional de Anclas' },
+  { src: '/images/empresas/jprentals-soldadura.webp', alt: 'Soldadura — JP Rentals' },
+  { src: '/images/empresas/anclas-galeria-3.webp',    alt: 'Producción — Nacional de Anclas' },
+  { src: '/images/empresas/jprentals-mod4.webp',      alt: 'Flete industrial — JP Rentals' },
+  { src: '/images/empresas/jprentals-grua-4.webp',    alt: 'Operación con grúa — JP Rentals' },
+];
+---
+
+<section class="gallery-section" aria-label={lang === 'es' ? 'Galería de proyectos' : 'Project gallery'}>
+
+  <!-- Fila 1 → izquierda -->
+  <div class="gallery-track mb-3 md:mb-4">
+    <div class="gallery-inner">
+      {[...row1, ...row1].map((img) => (
+        <div class="gallery-item">
+          <img src={img.src} alt={img.alt} loading="lazy" decoding="async" width="420" height="280" />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Fila 2 → derecha -->
+  <div class="gallery-track gallery-track--reverse">
+    <div class="gallery-inner">
+      {[...row2, ...row2].map((img) => (
+        <div class="gallery-item">
+          <img src={img.src} alt={img.alt} loading="lazy" decoding="async" width="420" height="280" />
+        </div>
+      ))}
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* ── Contenedor de sección ─────────────────────────── */
+  .gallery-section {
+    padding: 4rem 0;
+    background: linear-gradient(160deg, #0f172a 0%, #1a2640 100%);
+    overflow: hidden;
+  }
+
+  /* ── Pista de carrusel ─────────────────────────────── */
+  .gallery-track {
+    --gap: 14px;
+    --h: 260px;
+
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    /* Fundido en los bordes — prefijo obligatorio para Safari */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 7%,
+      #000 93%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      #000 7%,
+      #000 93%,
+      transparent 100%
+    );
+  }
+
+  /* ── Banda interna (duplicada para loop sin corte) ─── */
+  .gallery-inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    /* gap no soportado en flexbox en Safari < 14.1 — usamos margin en items */
+    width: -webkit-max-content;
+    width: max-content;
+    /* translate3d fuerza capa GPU en Safari y evita flickering */
+    -webkit-animation: marquee-left 72s linear infinite;
+    animation: marquee-left 72s linear infinite;
+    will-change: transform;
+    /* Previene parpadeo en Safari al componer la capa */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+  }
+
+  .gallery-track--reverse .gallery-inner {
+    -webkit-animation-name: marquee-right;
+    animation-name: marquee-right;
+    -webkit-animation-duration: 60s;
+    animation-duration: 60s;
+  }
+
+  /* ── Tarjeta de imagen ─────────────────────────────── */
+  .gallery-item {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    width: 420px;
+    height: var(--h);
+    border-radius: 14px;
+    overflow: hidden;
+    /* gap fallback para Safari < 14.1 */
+    margin-right: var(--gap);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    display: block;
+    -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Evita subpixel rendering issues en Safari */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+
+  .gallery-item:hover img {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+
+  /* Pausa al hacer hover en la pista */
+  .gallery-track:hover .gallery-inner {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+
+  /* ── Keyframes — con prefijo -webkit- para Safari < 9 ── */
+  @-webkit-keyframes marquee-left {
+    from { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+    to   { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes marquee-left {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @-webkit-keyframes marquee-right {
+    from { -webkit-transform: translate3d(-50%, 0, 0); transform: translate3d(-50%, 0, 0); }
+    to   { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
+  }
+  @keyframes marquee-right {
+    from { transform: translate3d(-50%, 0, 0); }
+    to   { transform: translate3d(0, 0, 0); }
+  }
+
+  /* ── Responsive ────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .gallery-section {
+      padding: 3rem 0;
+    }
+
+    .gallery-track {
+      --h: 190px;
+    }
+
+    .gallery-item {
+      width: 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-track {
+      --h: 160px;
+    }
+
+    .gallery-item {
+      width: 230px;
+    }
+  }
+
+  /* Respeta preferencia de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-inner {
+      -webkit-animation: none;
+      animation: none;
+    }
+    .gallery-track {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* momentum scroll en iOS Safari */
+      scroll-snap-type: x mandatory;
+    }
+    .gallery-item {
+      scroll-snap-align: start;
+    }
+  }
+</style>
