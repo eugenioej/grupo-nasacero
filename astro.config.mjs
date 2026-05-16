@@ -2,9 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://gruponasacero.com',
   output: 'static',
+
   integrations: [
     tailwind({ applyBaseStyles: false }),
     sitemap({
@@ -20,6 +23,7 @@ export default defineConfig({
       lastmod: new Date(),
     }),
   ],
+
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
@@ -27,9 +31,12 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
   vite: {
     build: {
       cssMinify: true,
     },
   },
+
+  adapter: cloudflare()
 });
